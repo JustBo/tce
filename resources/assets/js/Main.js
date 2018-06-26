@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+// import { DatePicker } from 'antd';
+
 export default class Main extends Component {
 
   componentDidMount() {
@@ -22,6 +24,7 @@ export default class Main extends Component {
                             <div className="card-header">Main Component</div>
                             <div className="card-body">
                                 I'm an Main component!
+                                {/* <DatePicker /> */}
                             </div>
                         </div>
                     </div>
