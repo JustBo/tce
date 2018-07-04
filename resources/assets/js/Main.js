@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-// import { DatePicker } from 'antd';
-//
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Promise from 'redux-promise';
 
 import reducers from './reducers';
+import Template from './components/Template'
 
 const createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <div>
-      Main component
-    </div>
+    <Template>
+      Content
+    </Template>
     {/* <BrowserRouter>
       <div>
         <Switch>
