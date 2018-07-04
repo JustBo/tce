@@ -2,38 +2,29 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // import { DatePicker } from 'antd';
+//
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Promise from 'redux-promise';
 
-export default class Main extends Component {
+import reducers from './reducers';
 
-  componentDidMount() {
-    axios.get('/api/users')
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+const createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
 
-    render() {
-        return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Main Component</div>
-                            <div className="card-body">
-                                I'm an Main component!
-                                {/* <DatePicker /> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-if (document.getElementById('root')) {
-    ReactDOM.render(<Main />, document.getElementById('root'));
-}
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <div>
+      Main component
+    </div>
+    {/* <BrowserRouter>
+      <div>
+        <Switch>
+          <Route path="/posts/new" component={PostNew} />
+          <Route path="/posts/:id" component={PostShow} />
+          <Route path="/" component={PostsIndex} />
+        </Switch>
+      </div>
+    </BrowserRouter> */}
+  </Provider>
+  , document.getElementById('root'));
